@@ -1,0 +1,26 @@
+name: deploy our microservices app
+
+# Trigger the workflow on push request events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker login -U ${{ secrets.DOCKER_USERNAME }} -P ${{ secrets.DOCKER_PASSWORD }}
+      
+      # build images of microservices
+      - run: docker build -t moka12/multi-client ./client
+      - run: docekr build -t moka12/multi-server ./server
+      - run: docker build -t moka12/multi-nginx ./nginx
+      - run: docker build -t moka12/multi-worker ./worker
+
+      # push the images to docker hub
+      - run: docker push moka12/multi-client
+      - run: docker push moka12/multi-server
+      - run: docker push moka12/multi-worker
+      - run: docker push moka12/multi-nginx
