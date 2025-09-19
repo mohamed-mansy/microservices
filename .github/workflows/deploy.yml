@@ -15,7 +15,7 @@ jobs:
       
       # build images of microservices
       - run: docker build -t moka12/multi-client ./client
-      - run: docekr build -t moka12/multi-server ./server
+      - run: docker build -t moka12/multi-server ./server
       - run: docker build -t moka12/multi-nginx ./nginx
       - run: docker build -t moka12/multi-worker ./worker
 
