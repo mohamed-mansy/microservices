@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+      - name: worker
+        image: moka12/multi-worker
+        env: # manage communication between worker and redis
+          - name: REDIS_HOST # Reference the Redis service by its name
+            value: "redis-cluster-ip-service" # Use the service name to connect within the cluster
+          - name: REDIS_PORT
+            value: "6379"
