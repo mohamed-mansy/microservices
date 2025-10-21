@@ -16,12 +16,6 @@ This project is a microservices-based Fibonacci calculator deployed in a Kuberne
 4. [Local development](#local-development)
 5. [Docker & Kubernetes](#docker--kubernetes)
 6. [Environment variables](#environment-variables)
-7. [API endpoints](#api-endpoints)
-8. [Data flow](#data-flow)
-9. [Troubleshooting](#troubleshooting)
-10. [Testing](#testing)
-11. [Contributing](#contributing)
-12. [License](#license)
 
 ---
 
@@ -154,7 +148,7 @@ Notes:
 * Create your own secret object as imperative.
   
 ```bash
-kubectl create secret generic <secret name> --form-literal <key=pass>/
+kubectl create secret generic <secret name> --form-literal <key=pass>
 ```
 
 
